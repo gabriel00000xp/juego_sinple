@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}mi juego sinple en python{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <header>
+        <h1>Mi Juego Simple en Python</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Inicio</a></li>
+                <li><a href="{% url 'about' %}">Acerca de</a></li>
+                <li><a href="{% url 'play' %}">Jugar</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2024 Mi Juego Simple en Python</p>
+    </footer>
+</body>
+</html>
+
+
+    from . import views
+
+    urlpatterns = [
+    # ...existing code...
+    path('', views.home, name='home'),
+    # ...existing code...
+    ]
+
+    def home(request):
+         return render(request, 'home.html')
